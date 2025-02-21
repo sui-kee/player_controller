@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public string currentAnimation = "PlayerIdle";
     public string comingAnimation = "";
     public bool playerIsAttacking = false;
+    public bool isHurt = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,11 +24,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("f") && !playerIsAttacking)
-        {
-            comingAnimation = "PlayerShoot";
-            StartCoroutine(PlayerShoot());
-        }
+       
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x,jumpingPower);
@@ -59,19 +56,19 @@ public class Player : MonoBehaviour
 
     public void PlayerMovementDetector()
     {
-        if(horizontal != 0 && !playerIsAttacking && IsGrounded())
+        if(horizontal != 0 && !playerIsAttacking && IsGrounded() && !isHurt)
         {
             comingAnimation = "PlayerRun";
         }
-        if (horizontal == 0 && !playerIsAttacking && IsGrounded())
+        if (horizontal == 0 && !playerIsAttacking && IsGrounded() && !isHurt)
         {
             comingAnimation = "PlayerIdle";
         }
-        if (!playerIsAttacking && !IsGrounded() && rb.linearVelocity.y >0)
+        if (!playerIsAttacking && !IsGrounded() && rb.linearVelocity.y > 0 && !isHurt)
         {
             comingAnimation = "PlayerJump";
         }
-        if (!playerIsAttacking && !IsGrounded() && rb.linearVelocity.y < 0)
+        if (!playerIsAttacking && !IsGrounded() && rb.linearVelocity.y < 0 && !isHurt)
         {
             comingAnimation = "PlayerFall";
         }
@@ -88,13 +85,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    // player shooting animation
-    public IEnumerator PlayerShoot()
+    // player hurt animation
+    public IEnumerator PlayerHurt()
     {
-        playerIsAttacking = true;
-        comingAnimation = "PlayerShoot";
-        yield return new WaitForSeconds(0.20f);
-        playerIsAttacking = false;
+        isHurt = true;
+        comingAnimation = "PlayerHurt";
+        yield return new WaitForSeconds(0.10f);
+        isHurt = false;
     }
     private void PlayerAnimatorController()
     {
