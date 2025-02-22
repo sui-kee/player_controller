@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
     {
         player.playerIsAttacking = true;
         player.comingAnimation = "PlayerShoot";
-        yield return new WaitForSeconds(0.20f);
+        yield return new WaitForSeconds(0.30f);
         Instantiate(arrow, shootingPoint.position,shootingPoint.rotation);
         player.playerIsAttacking = false;
     }

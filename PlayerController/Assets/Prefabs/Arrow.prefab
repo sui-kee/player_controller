@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4487911469502314043}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: playerArrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 1465543170014857936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.26, y: -3.5, z: 0.0395}
-  m_LocalScale: {x: 2.1625, y: 2.1625, z: 2.1625}
+  m_LocalPosition: {x: -11.436, y: -3.4763, z: 0.0395}
+  m_LocalScale: {x: 1.4854753, y: 1.4854753, z: 1.4854753}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4487911469502314043}
-  arrowSpeed: 3
+  arrowSpeed: 5
 --- !u!61 &4491412505848208427
 BoxCollider2D:
   m_ObjectHideFlags: 0

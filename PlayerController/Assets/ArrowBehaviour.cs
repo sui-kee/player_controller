@@ -18,7 +18,7 @@ public class ArrowBehaviour : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("wall"))
+        if (collision.CompareTag("wall") || collision.CompareTag("Skeleton"))
         {
             Destroy(gameObject);
         }
