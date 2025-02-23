@@ -13,6 +13,8 @@ public class Skeleton : MonoBehaviour
     public bool isIdle = false;
     public bool isAttacking = false;
     public bool isHurt = false;
+    public bool isDying = false;
+    public float lives = 3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,11 +26,11 @@ public class Skeleton : MonoBehaviour
     {
         SkeletonIdleController();
         SkeletonMovementController();
-        if (isFacingRight && sk_rb.position.x > player.rb.position.x )
+        if (isFacingRight && sk_rb.position.x > player.rb.position.x && !isDying )
             {
                 ChangeBossFacingDir();
             }
-            else if (!isFacingRight && sk_rb.position.x < player.rb.position.x)
+            else if (!isFacingRight && sk_rb.position.x < player.rb.position.x && !isDying)
             {
                 ChangeBossFacingDir();
             }
@@ -40,7 +42,7 @@ public class Skeleton : MonoBehaviour
     private void MoveToPosition()
 
     {
-        if(!isIdle)
+        if(!isIdle && !isDying)
         {
             float direction = isFacingRight ? 1f : -1f;
             sk_rb.linearVelocity = new Vector2(direction * runningSpeed, sk_rb.linearVelocity.y);
@@ -49,7 +51,7 @@ public class Skeleton : MonoBehaviour
     }
     private void SkeletonIdleController()
     {
-        if (player.rb.position.y > -2 && !isHurt)
+        if (player.rb.position.y > -2 && !isHurt && !isDying)
         {
             isIdle = true;
             incomingAnimation = "SkeletonIdle";
@@ -61,7 +63,7 @@ public class Skeleton : MonoBehaviour
     }
     private void SkeletonMovementController()
     {
-        if( !isIdle && !isAttacking && !isHurt)
+        if( !isIdle && !isAttacking && !isHurt && !isDying)
         {
             incomingAnimation = "SkeletonRun";
         } 
@@ -82,12 +84,24 @@ public class Skeleton : MonoBehaviour
         yield return new WaitForSeconds(0.44f);
     }
 
+    // Skeleton Dead animation
+    private IEnumerator SkeletonDead()
+    {
+        isDying = true;
+        incomingAnimation = "SkeletonDead";
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+    }
+
     private IEnumerator SkeletonProtect()
     {
-        isHurt = true;
-        incomingAnimation = "SkeletonProtect";
-        yield return new WaitForSeconds(0.30f);
-        isHurt = false;
+        
+            lives--;
+            isHurt = true;
+            incomingAnimation = "SkeletonProtect";
+            yield return new WaitForSeconds(0.30f);
+            isHurt = false;
+        
     }
     public void ChangeBossFacingDir()
     {
@@ -109,7 +123,7 @@ public class Skeleton : MonoBehaviour
         switch (incomingAnimation)
         {
             case "SkeletonDead":
-                ChangeAnimation("SkeletonProtect", 0.2f);
+                ChangeAnimation("SkeletonDead");
                 break;
             case "SkeletonAttack":
                 ChangeAnimation("SkeletonAttack", 0.2f);
@@ -129,7 +143,14 @@ public class Skeleton : MonoBehaviour
     {
         if (collision.CompareTag("playerArrow"))
         {
-            StartCoroutine(SkeletonProtect());
+            if (lives == 0)
+            {
+                StartCoroutine(SkeletonDead());
+            }
+            else
+            {
+                StartCoroutine(SkeletonProtect());
+            }
         }
     }
 }
