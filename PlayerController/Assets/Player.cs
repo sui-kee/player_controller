@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public string comingAnimation = "";
     public bool playerIsAttacking = false;
     public bool isHurt = false;
+    public float lives = 10;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +38,10 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        if (!isHurt)
+        {
+            rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        }
     }
 
     public void ChangeAnimation(string animation, float crossFade = 0.2f)
@@ -86,12 +90,13 @@ public class Player : MonoBehaviour
     }
 
     // player hurt animation
-    public IEnumerator PlayerHurt()
+    public IEnumerator PlayerHurt(float incomingForce=0)
     {
-        isHurt = true;
-        comingAnimation = "PlayerHurt";
-        yield return new WaitForSeconds(0.10f);
-        isHurt = false;
+            lives--;
+            comingAnimation = "PlayerHurt";
+            rb.linearVelocity = new Vector2(incomingForce, rb.linearVelocity.y);
+            yield return new WaitForSeconds(0.10f);
+            isHurt = false;
     }
     private void PlayerAnimatorController()
     {

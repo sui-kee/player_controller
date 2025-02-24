@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Skeleton : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D sk_rb;
+    [SerializeField] public Rigidbody2D sk_rb;
     [SerializeField] private Player player;
     [SerializeField] private Animator animator;
     public string currentAnimation = "SkeletonRun";
@@ -26,23 +26,22 @@ public class Skeleton : MonoBehaviour
     {
         SkeletonIdleController();
         SkeletonMovementController();
-        if (isFacingRight && sk_rb.position.x > player.rb.position.x && !isDying )
+        if (isFacingRight && sk_rb.position.x > player.rb.position.x && !isDying && !isAttacking )
             {
                 ChangeBossFacingDir();
             }
-            else if (!isFacingRight && sk_rb.position.x < player.rb.position.x && !isDying)
+        else if (!isFacingRight && sk_rb.position.x < player.rb.position.x && !isDying && !isAttacking)
             {
                 ChangeBossFacingDir();
             }
             MoveToPosition();
         SkeletonAnimatorController();
-        Debug.Log($"Player y pos: {player.rb.position.y}");
         
     }
     private void MoveToPosition()
 
     {
-        if(!isIdle && !isDying)
+        if(!isIdle && !isDying && !isAttacking)
         {
             float direction = isFacingRight ? 1f : -1f;
             sk_rb.linearVelocity = new Vector2(direction * runningSpeed, sk_rb.linearVelocity.y);
@@ -147,7 +146,7 @@ public class Skeleton : MonoBehaviour
             {
                 StartCoroutine(SkeletonDead());
             }
-            else
+            else if(lives >0 && !isHurt) 
             {
                 StartCoroutine(SkeletonProtect());
             }

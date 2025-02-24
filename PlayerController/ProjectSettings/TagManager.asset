@@ -8,6 +8,7 @@ TagManager:
   - wall
   - playerArrow
   - Skeleton
+  - skeletonSword
   layers:
   - Default
   - TransparentFX
