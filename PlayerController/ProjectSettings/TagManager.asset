@@ -9,6 +9,8 @@ TagManager:
   - playerArrow
   - Skeleton
   - skeletonSword
+  - orbBlocker
+  - RedOrb
   layers:
   - Default
   - TransparentFX
@@ -45,6 +47,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: foreground
+    uniqueID: 2691861645
+    locked: 0
+  - name: player
+    uniqueID: 4277279367
     locked: 0
   m_RenderingLayers:
   - Default
