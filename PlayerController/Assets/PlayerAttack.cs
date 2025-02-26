@@ -26,10 +26,16 @@ public class PlayerAttack : MonoBehaviour
     // player shooting animation
     public IEnumerator PlayerShoot()
     {
-        player.playerIsAttacking = true;
-        player.comingAnimation = "PlayerShoot";
-        yield return new WaitForSeconds(0.30f);
-        Instantiate(arrow, shootingPoint.position,shootingPoint.rotation);
-        player.playerIsAttacking = false;
+        if (player.canShoot)
+        {
+            player.canShoot = false;
+            player.playerIsAttacking = true;
+            player.comingAnimation = "PlayerShoot";
+            yield return new WaitForSeconds(0.30f);
+            Instantiate(arrow, shootingPoint.position, shootingPoint.rotation);
+            player.playerIsAttacking = false;
+            yield return new WaitForSeconds(1f);
+            player.canShoot = true;
+        }
     }
 }

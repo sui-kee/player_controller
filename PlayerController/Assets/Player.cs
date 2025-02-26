@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public string comingAnimation = "";
     public bool playerIsAttacking = false;
     public bool isHurt = false;
+    public bool canShoot = true;
     public float lives = 10;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

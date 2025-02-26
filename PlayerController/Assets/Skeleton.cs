@@ -6,6 +6,7 @@ public class Skeleton : MonoBehaviour
     [SerializeField] public Rigidbody2D sk_rb;
     [SerializeField] private Player player;
     [SerializeField] private Animator animator;
+    [SerializeField] private Level1Logistic level1;
     public string currentAnimation = "SkeletonRun";
     public string incomingAnimation = "";
     public bool isFacingRight = true;
@@ -14,7 +15,7 @@ public class Skeleton : MonoBehaviour
     public bool isAttacking = false;
     public bool isHurt = false;
     public bool isDying = false;
-    public float lives = 3;
+    public bool isInvincible = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -94,8 +95,6 @@ public class Skeleton : MonoBehaviour
 
     private IEnumerator SkeletonProtect()
     {
-        
-            lives--;
             isHurt = true;
             incomingAnimation = "SkeletonProtect";
             yield return new WaitForSeconds(0.30f);
@@ -142,11 +141,12 @@ public class Skeleton : MonoBehaviour
     {
         if (collision.CompareTag("playerArrow"))
         {
-            if (lives == 0)
+            if (!isInvincible)
             {
+                level1.enemyCounts--;
                 StartCoroutine(SkeletonDead());
             }
-            else if(lives >0 && !isHurt) 
+            else if(isInvincible) 
             {
                 StartCoroutine(SkeletonProtect());
             }
