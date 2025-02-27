@@ -14,9 +14,12 @@ public class Player : MonoBehaviour
     public string currentAnimation = "PlayerIdle";
     public string comingAnimation = "";
     public bool playerIsAttacking = false;
-    public bool isHurt = false;
     public bool canShoot = true;
+    
+    [Header("......player hurt......")]
     public float lives = 10;
+    public bool isHurt = false;
+    public float playerHurtingDirection = 1f;// determine the direction fore of player player when get hurt
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

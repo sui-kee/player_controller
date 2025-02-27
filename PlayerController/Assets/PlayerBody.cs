@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerBody : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] private Skeleton skeleton;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,8 +19,7 @@ public class PlayerBody : MonoBehaviour
         if (collision.CompareTag("skeletonSword"))
         {
             player.isHurt = true;
-            float attackDirection = (skeleton.sk_rb.position.x < player.rb.position.x) ? 1f : -1f;
-            StartCoroutine(player.PlayerHurt(15 * attackDirection));
+            StartCoroutine(player.PlayerHurt(15 * player.playerHurtingDirection));
         }
     }
 }

@@ -4,6 +4,7 @@ public class ArrowBehaviour : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     public float arrowSpeed = 5f;
+    public bool isReturn = false;// for arrow coming back or not
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,11 +15,16 @@ public class ArrowBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("wall") || collision.CompareTag("Skeleton") || collision.CompareTag("RedOrb"))
+        if(!isReturn && !collision.CompareTag("playerArrow"))// if the arrows meet the arrow should not return
+        {
+            isReturn = true;
+            transform.Rotate(0f, 180f, 0f);
+            rb.linearVelocity = -rb.linearVelocity;
+        }
+        else if (isReturn)
         {
             Destroy(gameObject);
         }

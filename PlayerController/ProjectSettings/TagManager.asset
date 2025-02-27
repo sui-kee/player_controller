@@ -11,6 +11,7 @@ TagManager:
   - skeletonSword
   - orbBlocker
   - RedOrb
+  - skeletonLife
   layers:
   - Default
   - TransparentFX

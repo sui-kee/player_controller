@@ -85,7 +85,7 @@ public class Skeleton : MonoBehaviour
     }
 
     // Skeleton Dead animation
-    private IEnumerator SkeletonDead()
+    public IEnumerator SkeletonDead()
     {
         isDying = true;
         incomingAnimation = "SkeletonDead";
@@ -141,15 +141,7 @@ public class Skeleton : MonoBehaviour
     {
         if (collision.CompareTag("playerArrow"))
         {
-            if (!isInvincible)
-            {
-                level1.enemyCounts--;
-                StartCoroutine(SkeletonDead());
-            }
-            else if(isInvincible) 
-            {
-                StartCoroutine(SkeletonProtect());
-            }
+            StartCoroutine(SkeletonProtect());
         }
     }
 }
