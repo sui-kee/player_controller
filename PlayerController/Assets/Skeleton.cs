@@ -93,7 +93,7 @@ public class Skeleton : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private IEnumerator SkeletonProtect()
+    public IEnumerator SkeletonProtect()
     {
             isHurt = true;
             incomingAnimation = "SkeletonProtect";
@@ -137,11 +137,5 @@ public class Skeleton : MonoBehaviour
                 break;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("playerArrow"))
-        {
-            StartCoroutine(SkeletonProtect());
-        }
-    }
+    
 }

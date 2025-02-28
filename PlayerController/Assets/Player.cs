@@ -110,6 +110,10 @@ public class Player : MonoBehaviour
                 Debug.Log("Shoot");
                 ChangeAnimation("PlayerShoot", 0.2f);
                 break;
+            case "CrowAttack":
+                Debug.Log("Shoot");
+                ChangeAnimation("CrowAttack", 0.2f);
+                break;
             case "PlayerHurt":
                 Debug.Log("Hurt");
                 ChangeAnimation("PlayerHurt", 0.2f);

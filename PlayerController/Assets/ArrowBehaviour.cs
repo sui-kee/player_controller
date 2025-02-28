@@ -18,13 +18,13 @@ public class ArrowBehaviour : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!isReturn && !collision.CompareTag("playerArrow"))// if the arrows meet the arrow should not return
+        if(!isReturn && !collision.CompareTag("playerArrow") && !collision.CompareTag("Skeleton") && !collision.CompareTag("Bird"))// if the arrows meet  the arrow should not return
         {
             isReturn = true;
             transform.Rotate(0f, 180f, 0f);
             rb.linearVelocity = -rb.linearVelocity;
         }
-        else if (isReturn)
+        else if (isReturn && !collision.CompareTag("Bird"))
         {
             Destroy(gameObject);
         }
