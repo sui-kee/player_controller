@@ -14,6 +14,9 @@ TagManager:
   - skeletonLife
   - skeletonBBody
   - skeletonFBody
+  - Bird
+  - crowDamageBody
+  - hole
   layers:
   - Default
   - TransparentFX

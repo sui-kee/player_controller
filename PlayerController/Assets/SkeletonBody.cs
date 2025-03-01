@@ -17,7 +17,7 @@ public class SkeletonBody : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("playerArrow"))
+        if (collision.CompareTag("playerArrow") || collision.CompareTag("crowDamageBody"))
         {
             if (!skeleton.isInvincible)
             {

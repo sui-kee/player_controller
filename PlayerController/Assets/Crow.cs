@@ -1,17 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Crow : MonoBehaviour
 {
+    Player player;
     public List<Collider2D> enemiesInRange = new();
     public Collider2D closestTarget = null;
     public bool isFacingRight = true;
     public float speed = 4f;
 
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        isFacingRight = player.isFacingRight;
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("skeletonFBody")) // Filter by tag
+        if (other.CompareTag("skeletonBBody")) // Filter by tag
         {
             enemiesInRange.Add(other);
         }
@@ -19,7 +25,7 @@ public class Crow : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("skeletonFBody")) // Remove from list when out of range
+        if (other.CompareTag("skeletonBBody")) // Remove from list when out of range
         {
             enemiesInRange.Remove(other);
         }
@@ -82,4 +88,5 @@ public class Crow : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, closestTarget.transform.position, speed * Time.deltaTime);
         }
     }
+    
 }
