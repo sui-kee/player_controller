@@ -757,6 +757,7 @@ GameObject:
   - component: {fileID: 188776072}
   - component: {fileID: 188776073}
   - component: {fileID: 188776074}
+  - component: {fileID: 188776075}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -771,7 +772,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188776066}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 63e6d289f3945a34e99d70aa8de9db90, type: 2}
@@ -991,6 +992,43 @@ MonoBehaviour:
   crow: {fileID: 1222970847368047807, guid: ff8f3d9d19e7dfb40968b86fc49a3493, type: 3}
   player: {fileID: 188776072}
   shootingPoint: {fileID: 1558282963}
+--- !u!70 &188776075
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188776066}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.06649224, y: -0.28906554}
+  m_Size: {x: 0.2802937, y: 0.51813126}
+  m_Direction: 0
 --- !u!1 &325711525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2699,7 +2737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1104586403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3074,7 +3112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1236294442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5403,7 +5441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1581893646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5919,7 +5957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1716653787
 Transform:
   m_ObjectHideFlags: 0
